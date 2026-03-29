@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero to Funded — 3 founders. 1 AI. 24 hours. 1,000,000 PLN.</title>
+<meta name="description" content="3 founders build startups with AI for 24 hours straight. The winner gets 1,000,000 PLN seed investment — LIVE. Warsaw, Fall 2026.">
+<meta property="og:title" content="Zero to Funded">
+<meta property="og:description" content="3 founders. 1 AI. 24 hours. 1,000,000 PLN seed — LIVE.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zero to Funded">
+<meta name="twitter:description" content="3 founders. 1 AI. 24 hours. 1,000,000 PLN seed — LIVE.">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0a0a0f;
+    --bg2:#111118;
+    --accent:#3b82f6;
+    --accent-glow:rgba(59,130,246,0.15);
+    --text:#e4e4e7;
+    --text-dim:#71717a;
+    --text-bright:#fafafa;
+    --gold:#f59e0b;
+  }
+  html{font-size:16px;scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Subtle grid background */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size:60px 60px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* Glow blob */
+  .glow{
+    position:fixed;
+    width:600px;height:600px;
+    background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);
+    top:-200px;left:50%;transform:translateX(-50%);
+    pointer-events:none;z-index:0;
+  }
+
+  main{
+    position:relative;z-index:1;
+    max-width:720px;width:100%;
+    padding:0 24px;
+    display:flex;flex-direction:column;align-items:center;
+    text-align:center;
+    padding-top:12vh;
+    padding-bottom:80px;
+  }
+
+  /* Tag */
+  .tag{
+    display:inline-block;
+    padding:6px 16px;
+    border:1px solid rgba(59,130,246,0.3);
+    border-radius:100px;
+    font-size:0.75rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:var(--accent-glow);
+    margin-bottom:32px;
+  }
+
+  /* Headline */
+  h1{
+    font-size:clamp(2.5rem, 6vw, 4.5rem);
+    font-weight:800;
+    line-height:1.05;
+    letter-spacing:-0.03em;
+    color:var(--text-bright);
+    margin-bottom:24px;
+  }
+  h1 .highlight{
+    background:linear-gradient(135deg, var(--accent), #818cf8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  /* Subheadline */
+  .sub{
+    font-size:clamp(1.1rem, 2.5vw, 1.35rem);
+    color:var(--text-dim);
+    line-height:1.6;
+    max-width:540px;
+    margin-bottom:48px;
+  }
+
+  /* Countdown */
+  .countdown-label{
+    font-size:0.75rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    margin-bottom:16px;
+  }
+  .countdown{
+    display:flex;
+    gap:12px;
+    margin-bottom:56px;
+  }
+  .countdown .unit{
+    background:var(--bg2);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:12px;
+    padding:16px 20px;
+    min-width:80px;
+  }
+  .countdown .num{
+    font-size:2.2rem;
+    font-weight:700;
+    color:var(--text-bright);
+    font-variant-numeric:tabular-nums;
+    line-height:1;
+  }
+  .countdown .lbl{
+    font-size:0.65rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    margin-top:6px;
+  }
+
+  /* Email form */
+  .form-wrap{
+    width:100%;
+    max-width:460px;
+    margin-bottom:20px;
+  }
+  .form-row{
+    display:flex;
+    gap:0;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.1);
+    background:var(--bg2);
+    transition:border-color 0.2s;
+  }
+  .form-row:focus-within{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-glow);
+  }
+  .form-row input{
+    flex:1;
+    padding:14px 18px;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--text-bright);
+    font-size:1rem;
+  }
+  .form-row input::placeholder{color:var(--text-dim)}
+  .form-row button{
+    padding:14px 28px;
+    background:var(--accent);
+    border:none;
+    color:#fff;
+    font-weight:600;
+    font-size:0.9rem;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background 0.2s;
+  }
+  .form-row button:hover{background:#2563eb}
+  .form-note{
+    font-size:0.75rem;
+    color:var(--text-dim);
+    margin-top:10px;
+  }
+
+  /* Success message */
+  .success{
+    display:none;
+    padding:16px 24px;
+    border-radius:12px;
+    background:rgba(34,197,94,0.1);
+    border:1px solid rgba(34,197,94,0.3);
+    color:#4ade80;
+    font-size:0.95rem;
+    margin-bottom:20px;
+    max-width:460px;
+    width:100%;
+  }
+
+  /* Stats bar */
+  .stats{
+    display:flex;
+    gap:40px;
+    margin-top:64px;
+    padding-top:40px;
+    border-top:1px solid rgba(255,255,255,0.06);
+  }
+  .stat{text-align:center}
+  .stat .val{
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--text-bright);
+  }
+  .stat .val.gold{color:var(--gold)}
+  .stat .desc{
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--text-dim);
+    margin-top:4px;
+  }
+
+  /* Footer */
+  footer{
+    position:relative;z-index:1;
+    padding:24px;
+    font-size:0.75rem;
+    color:var(--text-dim);
+    text-align:center;
+  }
+
+  /* Mobile */
+  @media(max-width:480px){
+    main{padding-top:8vh}
+    .countdown .unit{min-width:64px;padding:12px 14px}
+    .countdown .num{font-size:1.6rem}
+    .stats{gap:24px}
+    .form-row{flex-direction:column}
+    .form-row button{padding:14px}
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<main>
+  <div class="tag">Warsaw &middot; Fall 2026 &middot; 24h Live</div>
+
+  <h1>
+    <span class="highlight">Zero</span> to Funded
+  </h1>
+
+  <p class="sub">
+    3 founders. 1 AI. 24 hours.<br>
+    The winner walks away with <strong style="color:var(--gold)">1,000,000 PLN</strong> seed investment &mdash; live on stream.
+  </p>
+
+  <div class="countdown-label">Countdown to event</div>
+  <div class="countdown" id="countdown">
+    <div class="unit"><div class="num" id="cd-days">---</div><div class="lbl">Days</div></div>
+    <div class="unit"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
+    <div class="unit"><div class="num" id="cd-min">--</div><div class="lbl">Min</div></div>
+    <div class="unit"><div class="num" id="cd-sec">--</div><div class="lbl">Sec</div></div>
+  </div>
+
+  <div class="success" id="success">You're on the list. We'll notify you first.</div>
+
+  <div class="form-wrap" id="form-wrap">
+    <div class="form-row">
+      <input type="email" id="email" placeholder="your@email.com" required autocomplete="email">
+      <button id="submit-btn" onclick="handleSubmit()">Notify me</button>
+    </div>
+    <p class="form-note">Be the first to know. No spam. Unsubscribe anytime.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="val">3</div>
+      <div class="desc">Founders</div>
+    </div>
+    <div class="stat">
+      <div class="val">24h</div>
+      <div class="desc">Non-stop</div>
+    </div>
+    <div class="stat">
+      <div class="val gold">1M PLN</div>
+      <div class="desc">Seed investment</div>
+    </div>
+    <div class="stat">
+      <div class="val">LIVE</div>
+      <div class="desc">On stream</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Zero to Funded &middot; Warsaw, Poland
+</footer>
+
+<script>
+  // Countdown — set target date (October 10, 2026, 10:00 Warsaw time)
+  const TARGET = new Date('2026-10-10T10:00:00+02:00').getTime();
+
+  function updateCountdown() {
+    const now = Date.now();
+    const diff = TARGET - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-min').textContent = '00';
+      document.getElementById('cd-sec').textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2, '0');
+    document.getElementById('cd-sec').textContent = String(s).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Email submit — stores locally for now; replace with your backend/Mailchimp/ConvertKit
+  function handleSubmit() {
+    const input = document.getElementById('email');
+    const email = input.value.trim();
+    if (!email || !email.includes('@')) {
+      input.style.borderColor = '#ef4444';
+      return;
+    }
+
+    // TODO: Replace this with actual API call (e.g., Mailchimp, ConvertKit, Supabase)
+    console.log('Email submitted:', email);
+
+    // Show success
+    document.getElementById('success').style.display = 'block';
+    document.getElementById('form-wrap').style.display = 'none';
+  }
+
+  // Enter key submits
+  document.getElementById('email').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleSubmit();
+  });
+</script>
+
+</body>
+</html>

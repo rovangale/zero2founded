@@ -35,7 +35,7 @@
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
   }
-
+ 
   /* Subtle grid background */
   body::before{
     content:'';
@@ -48,7 +48,7 @@
     pointer-events:none;
     z-index:0;
   }
-
+ 
   /* Glow blob */
   .glow{
     position:fixed;
@@ -57,7 +57,7 @@
     top:-200px;left:50%;transform:translateX(-50%);
     pointer-events:none;z-index:0;
   }
-
+ 
   main{
     position:relative;z-index:1;
     max-width:720px;width:100%;
@@ -67,7 +67,7 @@
     padding-top:12vh;
     padding-bottom:80px;
   }
-
+ 
   /* Tag */
   .tag{
     display:inline-block;
@@ -81,7 +81,7 @@
     background:var(--accent-glow);
     margin-bottom:32px;
   }
-
+ 
   /* Headline */
   h1{
     font-size:clamp(2.5rem, 6vw, 4.5rem);
@@ -97,7 +97,7 @@
     -webkit-text-fill-color:transparent;
     background-clip:text;
   }
-
+ 
   /* Subheadline */
   .sub{
     font-size:clamp(1.1rem, 2.5vw, 1.35rem);
@@ -106,7 +106,7 @@
     max-width:540px;
     margin-bottom:48px;
   }
-
+ 
   /* Countdown */
   .countdown-label{
     font-size:0.75rem;
@@ -141,7 +141,7 @@
     color:var(--text-dim);
     margin-top:6px;
   }
-
+ 
   /* Email form */
   .form-wrap{
     width:100%;
@@ -188,7 +188,7 @@
     color:var(--text-dim);
     margin-top:10px;
   }
-
+ 
   /* Success message */
   .success{
     display:none;
@@ -202,7 +202,7 @@
     max-width:460px;
     width:100%;
   }
-
+ 
   /* Stats bar */
   .stats{
     display:flex;
@@ -225,7 +225,7 @@
     color:var(--text-dim);
     margin-top:4px;
   }
-
+ 
   /* Footer */
   footer{
     position:relative;z-index:1;
@@ -234,7 +234,7 @@
     color:var(--text-dim);
     text-align:center;
   }
-
+ 
   /* Mobile */
   @media(max-width:480px){
     main{padding-top:8vh}
@@ -247,21 +247,21 @@
 </style>
 </head>
 <body>
-
+ 
 <div class="glow"></div>
-
+ 
 <main>
   <div class="tag">Warsaw &middot; Fall 2026 &middot; 24h Live</div>
-
+ 
   <h1>
     <span class="highlight">Zero</span> to Funded
   </h1>
-
+ 
   <p class="sub">
     3 founders. 1 AI. 24 hours.<br>
     The winner walks away with <strong style="color:var(--gold)">1,000,000 PLN</strong> seed investment &mdash; live on stream.
   </p>
-
+ 
   <div class="countdown-label">Countdown to event</div>
   <div class="countdown" id="countdown">
     <div class="unit"><div class="num" id="cd-days">---</div><div class="lbl">Days</div></div>
@@ -269,9 +269,9 @@
     <div class="unit"><div class="num" id="cd-min">--</div><div class="lbl">Min</div></div>
     <div class="unit"><div class="num" id="cd-sec">--</div><div class="lbl">Sec</div></div>
   </div>
-
+ 
   <div class="success" id="success">You're on the list. We'll notify you first.</div>
-
+ 
   <div class="form-wrap" id="form-wrap">
     <div class="form-row">
       <input type="email" id="email" placeholder="your@email.com" required autocomplete="email">
@@ -279,7 +279,7 @@
     </div>
     <p class="form-note">Be the first to know. No spam. Unsubscribe anytime.</p>
   </div>
-
+ 
   <div class="stats">
     <div class="stat">
       <div class="val">3</div>
@@ -299,15 +299,15 @@
     </div>
   </div>
 </main>
-
+ 
 <footer>
   &copy; 2026 Zero to Funded &middot; Warsaw, Poland
 </footer>
-
+ 
 <script>
-  // Countdown — set target date (October 10, 2026, 10:00 Warsaw time)
-  const TARGET = new Date('2026-10-10T10:00:00+02:00').getTime();
-
+  // Countdown — set target date (October 2, 2026, 10:00 Warsaw time)
+  const TARGET = new Date('2026-10-02T10:00:00+02:00').getTime();
+ 
   function updateCountdown() {
     const now = Date.now();
     const diff = TARGET - now;
@@ -329,7 +329,7 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
-
+ 
   // Email submit — stores locally for now; replace with your backend/Mailchimp/ConvertKit
   function handleSubmit() {
     const input = document.getElementById('email');
@@ -338,20 +338,20 @@
       input.style.borderColor = '#ef4444';
       return;
     }
-
+ 
     // TODO: Replace this with actual API call (e.g., Mailchimp, ConvertKit, Supabase)
     console.log('Email submitted:', email);
-
+ 
     // Show success
     document.getElementById('success').style.display = 'block';
     document.getElementById('form-wrap').style.display = 'none';
   }
-
+ 
   // Enter key submits
   document.getElementById('email').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') handleSubmit();
   });
 </script>
-
+ 
 </body>
 </html>
